@@ -13,16 +13,17 @@ form.addEventListener("submit", (event) => {
 
     if (email.value === '' || password.value === '') {
         alert("Заповніть всі поля!");
+    } else {
+        const formObj = form.elements;
+        for (const element in formObj) {
+            if (formObj[element].tagName === "INPUT") {
+                login[`${formObj[element].name}`] = formObj[element].value;
+            }
+        }
+    
+        console.log(login);
+    
+        event.currentTarget.reset();
     }
     
-    const formObj = form.elements;
-    for (const element in formObj) {
-        if (formObj[element].tagName === "INPUT") {
-            login[`${formObj[element].name}`] = formObj[element].value;
-        }
-    }
-
-    console.log(login);
-
-    event.currentTarget.reset();
 });
